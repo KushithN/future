@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Client Lead Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- LOGIN -->
+  <section id="loginView" class="login-wrap">
+    <form id="loginForm" class="login-card">
+      <span class="mark">CRM</span>
+      <h2>Sign in</h2>
+      <p class="muted">Manage your client leads in one place.</p>
+      <div class="field">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" autocomplete="current-password" required />
+      </div>
+      <button type="submit" class="btn-primary">Sign in</button>
+      <p id="loginError" class="error"></p>
+    </form>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashView" class="hidden">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <span class="mark">CRM</span>
+          <h1>Client Lead Management</h1>
+        </div>
+        <div class="topbar-actions">
+          <a href="contact.html" target="_blank">Contact form</a>
+          <button id="logoutBtn" class="btn-outline-light" type="button">Log out</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Pipeline: counts by status, click to filter -->
+      <nav id="pipeline" class="pipeline" aria-label="Filter leads by status"></nav>
+
+      <!-- Add lead -->
+      <form id="addForm" class="panel">
+        <h2>Add a lead</h2>
+        <div class="add-grid">
+          <div class="field">
+            <label for="addName">Name</label>
+            <input id="addName" placeholder="Full name" required />
+          </div>
+          <div class="field">
+            <label for="addEmail">Email</label>
+            <input id="addEmail" type="email" placeholder="name@example.com" required />
+          </div>
+          <div class="field">
+            <label for="addSource">Source</label>
+            <select id="addSource">
+              <option value="website">Website</option>
+              <option value="facebook">Facebook</option>
+              <option value="instagram">Instagram</option>
+              <option value="internet">Internet</option>
+              <option value="referral">Referral</option>
+              <option value="walk-in">Walk-in</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="addStatus">Status</label>
+            <select id="addStatus">
+              <option value="new">New</option>
+              <option value="contacted">Contacted</option>
+              <option value="interested">Interested</option>
+              <option value="not-interested">Not interested</option>
+              <option value="converted">Converted</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="addNotes">Notes</label>
+            <input id="addNotes" placeholder="e.g. Asked for pricing details" />
+          </div>
+          <button type="submit" class="btn-primary">Add lead</button>
+        </div>
+        <p id="addError" class="error"></p>
+      </form>
+
+      <!-- Leads table -->
+      <div class="panel table-panel">
+        <div class="toolbar">
+          <input type="search" id="search" placeholder="Search by name or email" aria-label="Search leads" />
+          <span id="count" class="muted"></span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <colgroup>
+              <col style="width: 17%" />
+              <col style="width: 19%" />
+              <col style="width: 11%" />
+              <col style="width: 14%" />
+              <col style="width: 16%" />
+              <col style="width: 13%" />
+              <col style="width: 10%" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Source</th>
+                <th>Status</th>
+                <th>Notes</th>
+                <th>Follow-up</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="leadRows"></tbody>
+          </table>
+        </div>
+        <p id="emptyMsg" class="empty hidden"></p>
+      </div>
+    </main>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
